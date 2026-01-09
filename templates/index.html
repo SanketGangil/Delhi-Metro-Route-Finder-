@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delhi Metro - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Delhi Metro Route Finder</h1>
+
+    {% if error %}
+    <div style="color: red; text-align: center; margin-bottom: 10px;">{{ error }}</div>
+    {% endif %}
+    
+    <form action="/result" method="POST">
+        <div class="form-group">
+            <label>From</label>
+            <input list="station_list" name="source" placeholder="Start Station..." required>
+        </div>
+
+        <div class="form-group">
+            <label>To</label>
+            <input list="station_list" name="destination" placeholder="End Station..." required>
+        </div>
+
+        <datalist id="station_list">
+            {% for station in stations %}
+                <option value="{{ station }}">
+            {% endfor %}
+        </datalist>
+
+        <button type="submit">Find Best Route</button>
+    </form>
+</div>
+
+</body>
+</html>

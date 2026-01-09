@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Route Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        #result-card { display: block; margin-top: 0; border: none; }
+        .back-btn { background-color: #6c757d; margin-top: 20px; }
+        .back-btn:hover { background-color: #5a6268; }
+
+        /* Styles for the "Switch" connector */
+        .switch-indicator {
+            font-size: 0.8em;
+            color: #d35400;
+            font-weight: bold;
+            margin: 5px 0 5px 20px; /* Indent to match tree */
+            padding: 2px 8px;
+            background: #fdebd0;
+            border-radius: 4px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Best Route Found</h1>
+    <p style="text-align: center; color: #555;">{{ source }} ➝ {{ destination }}</p>
+
+    <div id="result-card">
+        <div class="metrics">
+            <div class="metric-item">
+                <span class="metric-value">₹{{ data.fare }}</span>
+                <span class="metric-label">Fare</span>
+            </div>
+            <div class="metric-item">
+                <span class="metric-value">{{ data.estimated_time_mins }} min</span>
+                <span class="metric-label">Time</span>
+            </div>
+            <div class="metric-item">
+                <span class="metric-value">{{ data.stations_count }}</span>
+                <span class="metric-label">Total Stops</span>
+            </div>
+        </div>
+
+        <ul class="timeline">
+            {% for i in range(data.path|length) %}
+                {% set step = data.path[i] %}
+                {% set prev_step = data.path[i-1] if i > 0 else None %}
+                
+                {% if prev_step and prev_step.line != step.line and step.line != 'End' %}
+                    <div class="switch-indicator">
+                        Change to {{ step.line }}
+                    </div>
+                {% endif %}
+
+                {% set line_color = step.line.split(' ')[0] if step.line else 'Default' %}
+                
+                <li class="step line-{{ line_color }}">
+                    <div class="station-name">{{ step.station }}</div>
+                    <div class="line-name">
+                        {% if i == 0 %}
+                            Start on {{ step.line }}
+                        {% elif i == data.path|length - 1 %}
+                            Destination
+                        {% else %}
+                            {{ step.line }}
+                        {% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        
+        <p style="text-align: center; font-size: 0.85em; color: #777; margin-top: 15px;">
+            *Intermediate stations hidden for clarity.
+        </p>
+    </div>
+
+    <a href="/">
+        <button class="back-btn">Check Another Route</button>
+    </a>
+</div>
+
+</body>
+</html>

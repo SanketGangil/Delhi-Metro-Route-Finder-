@@ -1,0 +1,155 @@
+:root {
+    --primary: #0056b3;
+    --bg: #f0f2f5;
+    --card-bg: white;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg);
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 450px;
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.form-group { margin-bottom: 15px; }
+
+label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 10px;
+}
+
+button:hover { background-color: #004494; }
+
+/* Results Area */
+#result-card {
+    display: none;
+    margin-top: 25px;
+    border-top: 2px solid #eee;
+    padding-top: 15px;
+}
+
+.metrics {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background: #eef4ff;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.metric-item { text-align: center; }
+
+.metric-value {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.metric-label { font-size: 0.8rem; color: #666; }
+
+/* Timeline */
+.timeline {
+    list-style: none;
+    padding: 0;
+    position: relative;
+}
+
+.step {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+}
+
+.step::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border: 3px solid #ccc;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.step::after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 18px;
+    width: 2px;
+    height: 100%;
+    background: #e0e0e0;
+    z-index: 1;
+}
+
+.step:last-child::after { display: none; }
+
+/* Station Text */
+.station-name { font-weight: 600; color: #333; }
+.line-name { font-size: 0.8rem; color: #888; margin-top: 2px; }
+
+/* Target the ::before pseudo-element (the dot) */
+.line-Yellow::before { border-color: #f1c40f !important; }
+.line-Blue::before { border-color: #3498db !important; }
+.line-Red::before { border-color: #e74c3c !important; }
+.line-Violet::before { border-color: #9b59b6 !important; }
+.line-Green::before { border-color: #2ecc71 !important; }
+.line-Pink::before { border-color: #ff9ff3 !important; }
+.line-Magenta::before { border-color: #be2edd !important; }
+.line-Orange::before { border-color: #e67e22 !important; }
+.line-Aqua::before { border-color: #00d2d3 !important; }
