@@ -1,7 +1,7 @@
-import requests               #fetch the webpage
-from bs4 import BeautifulSoup #parse and extract HTML elements
-import json                   #save output as a json format
-import os                     #create folders
+import requests               
+from bs4 import BeautifulSoup
+import json                   
+import os                     
 
 def scrape_metro_routes():
     url = "https://delhimetrorail.info/delhi-metro-stations"
