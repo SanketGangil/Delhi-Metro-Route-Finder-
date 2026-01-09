@@ -1,7 +1,7 @@
 import json
 import heapq
 from collections import defaultdict
-import itertools  # <--- NEW IMPORT
+import itertools
 
 class MetroGraph:
     def __init__(self):
@@ -35,10 +35,10 @@ class MetroGraph:
                     if weight > 0:
                         graph.add_edge(u, v, weight, line)
             
-            print(f"✅ Graph loaded: {len(graph.adj)} stations ready.")
+            print(f"Graph loaded: {len(graph.adj)} stations ready.")
             return graph
         except Exception as e:
-            print(f"❌ Error loading JSON: {e}")
+            print(f"Error loading JSON: {e}")
             return cls()
 
     def dijkstra(self, source, target):
@@ -91,12 +91,12 @@ class MetroGraph:
         # 1. Fare Calculation (DMRC Slabs)
         d = total_distance
         fare = 0
-        if d <= 2: fare = 10
-        elif d <= 5: fare = 20
-        elif d <= 12: fare = 30
-        elif d <= 21: fare = 40
-        elif d <= 32: fare = 50
-        else: fare = 60
+        if d <= 2: fare = 11
+        elif d <= 5: fare = 21
+        elif d <= 12: fare = 32
+        elif d <= 21: fare = 43
+        elif d <= 32: fare = 54
+        else: fare = 64
 
         # 2. Time Calculation
         stops = len(path)
@@ -118,8 +118,8 @@ class MetroGraph:
             "interchanges": interchanges,
             "fare": fare,
             "estimated_time_mins": int(est_time),
-            "path": condensed, # <--- RETURN THE SMART PATH HERE
-            "full_path": path  # Keep full path if you ever need it for debugging
+            "path": condensed, # THIS RETURN THE SMART PATH HERE
+            "full_path": path  # i will keep full path if i ever need it for debugging
         }
     
     def get_smart_path(self, full_path):
@@ -149,12 +149,12 @@ class MetroGraph:
 
             is_interchange = (curr_line != prev_line) or (curr_line != next_line)
             
-            # Context Logic: You asked to show "Rajiv Chowk (Blue) -> Rajiv Chowk (Yellow)"
+            # Problem : I want to show "Rajiv Chowk (Blue) -> Rajiv Chowk (Yellow)"
             # My logic in 'dijkstra' already stores them as separate steps if the node is visited 
             # on different lines.
             
             # If it's an interchange, or the immediate neighbor of an interchange, we keep it.
-            # But to keep it simple as per your request "Interchanges Only":
+            # But to keep it simple "Interchanges Only":
             
             if is_interchange:
                 # Check if we already added this station (to avoid duplicates)
