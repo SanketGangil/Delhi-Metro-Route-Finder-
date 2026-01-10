@@ -70,4 +70,5 @@ def save_routes_to_file(routes, filename="data/metro_routes.json"):
 
 if __name__ == "__main__":
     routes = scrape_metro_routes()
+    #print(routes)
     save_routes_to_file(routes)
