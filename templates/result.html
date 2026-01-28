@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Route Result</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
     <style>
         #result-card { display: block; margin-top: 0; border: none; }
         .back-btn { background-color: #6c757d; margin-top: 20px; }
         .back-btn:hover { background-color: #5a6268; }
 
-        /* Styles for the "Switch" connector */
         .switch-indicator {
             font-size: 0.8em;
             color: #d35400;
             font-weight: bold;
-            margin: 5px 0 5px 20px; /* Indent to match tree */
+            margin: 5px 0 5px 20px; 
             padding: 2px 8px;
             background: #fdebd0;
             border-radius: 4px;
