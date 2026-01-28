@@ -1,39 +1,120 @@
-```sh
-# 🚇 DMRC Route Optimization Engine
+# DMRC Route Finder
 
-A high-performance web application that calculates the most efficient route between Delhi Metro stations using **Dijkstra’s Algorithm** and **FastAPI**. It optimizes for travel time by accounting for line interchanges and provides estimated fares and travel duration.
+A web-based **Delhi Metro Route Finder** that calculates the **best route** between two metro stations using graph-based algorithms.  
+The application displays the **fare, estimated travel time, total stops**, and line interchanges through a simple and intuitive UI.
 
-![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-009688)
-![Algorithm](https://img.shields.io/badge/Algorithm-Dijkstra-orange)
+---
 
-## 🚀 Features
+## Features
 
-* **Smart Routing:** Uses a modified Dijkstra algorithm that penalizes line switching to find the *fastest* route, not just the shortest distance.
-* **Condensed Path View:** Intelligently summarizes long routes to show only key stations (Start, Interchanges, End) for a cleaner UX.
-* **Fare & Time Estimation:** Calculates ticket cost based on official DMRC distance slabs and estimates travel time including stoppage/interchange delays.
-* **High Performance:** Built on **FastAPI** (Asynchronous) for sub-50ms response times.
-* **Interactive API Docs:** Includes automatic Swagger UI documentation (`/docs`).
+- Find the **best metro route** between any two stations
+- Automatic **line change detection**
+- Displays **estimated travel time**
+- Calculates **fare**
+- Shows **number of stops**
+- Graph-based path computation
+- Simple web interface using HTML templates
 
-## 🛠️ Tech Stack
+---
 
-* **Backend:** Python, FastAPI, Uvicorn
-* **Algorithm:** Graph Theory (Weighted Graph, Priority Queue)
-* **Frontend:** Jinja2 Templates, HTML5, CSS3
-* **Data:** JSON (Adjacency List structure), BeautifulSoup (Scraper)
+## Tech Stack
 
-## 📂 Project Structure
+- **Backend:** Python (FastAPI / Starlette-style routing)
+- **Algorithm:** Graph + Shortest Path logic
+- **Frontend:** HTML, CSS (Jinja2 templates)
+- **Data Source:** JSON-based Delhi Metro route data
+- **Server:** Uvicorn
 
-```text
-/metro_project
-├── main.py               # FastAPI Server & Routes
-├── metro_graph.py        # Core Logic (Dijkstra & Fare Rules)
-├── requirements.txt      # Dependencies
+---
+
+## Project Structure
+
+```bash
+DMRC_ROUTE_FINDER/
+│
+├── data/
+│   └── metro_routes.json      # Delhi Metro stations & distances
+│
 ├── static/
-│   └── style.css         # Styling
+│   └── style.css              # Styling for UI
+│
 ├── templates/
-│   ├── index.html        # Search Page
-│   └── result.html       # Result Page
-└── data/
-    └── metro_routes.json # Network Data
+│   ├── index.html             # Home page (station selection)
+│   └── result.html            # Route result display
+│
+├── main.py                    # Application entry point
+├── metro_graph.py             # Graph creation & route logic
+├── scrape.py                  # Script to scrape metro data
+│
+├── requirements.txt           # Python dependencies
+├── README.md                  # Project documentation
+└── .gitignore
 ```
+---
+
+
+## Installation & Setup
+
+- 1️. Clone the Repository
+```bash
+git clone https://github.com/your-username/DMRC_ROUTE_FINDER.git
+cd DMRC_ROUTE_FINDER
+```
+
+- 2️. Create Virtual Environment (Recommended)
+```bash
+python -m venv venv
+```
+
+```bash
+source venv/bin/activate #macOS / Linux
+venv\Scripts\activate #Windows
+```
+
+
+- 3️. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+- Run the Application
+```bash
+uvicorn main:app --reload
+```
+- Open your browser and go to:
+```bash
+http://127.0.0.1:8000
+```
+---
+
+## How It Works
+
+* User selects source and destination metro stations
+
+* Metro data is loaded from metro_routes.json
+
+* Stations are converted into a graph structure
+
+* A shortest-path algorithm computes the best route
+
+* The UI displays:
+
+* * Fare
+
+* * Estimated travel time
+
+* * Total stations
+
+* * Line interchanges
+
+---
+
+## Output Details
+
+- Fare: Estimated using station distance
+
+- Time: Derived from cumulative distances
+
+- Stops: Total stations in route
+
+- Line Changes: Clearly highlighted
