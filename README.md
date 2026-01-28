@@ -57,8 +57,8 @@ DMRC_ROUTE_FINDER/
 
 - 1️. Clone the Repository
 ```bash
-git clone https://github.com/your-username/DMRC_ROUTE_FINDER.git
-cd DMRC_ROUTE_FINDER
+git clone https://github.com/SanketGangil/Delhi-Metro-Route-Finder-.git
+cd Delhi-Metro-Route-Finder-
 ```
 
 - 2️. Create Virtual Environment (Recommended)
